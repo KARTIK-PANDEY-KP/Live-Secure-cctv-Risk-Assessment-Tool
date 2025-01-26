@@ -15,25 +15,33 @@ import './globals.css'
 import { AuthProvider } from '@/context/AuthContext'
 import ChatWidget from '@/components/ChatWidget/ChatWidget'
 import { ThemeProvider } from '@/components/ThemeProvider'
+import { Roboto } from 'next/font/google'
 
+const roboto = Roboto({
+  weight: ['400', '500', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+})
+
+// In your RootLayout component:
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <AuthProvider>
-          <ThemeProvider>
-            <Navigation />
-            <main>
-              {children}
-            </main>
-            <ChatWidget />
-          </ThemeProvider>
-        </AuthProvider>
-      </body>
+    <html lang="en" className={roboto.className}>
+    <body className={inter.className}>
+      <AuthProvider>
+        <ThemeProvider>
+          <Navigation />
+          <main>
+            {children}
+          </main>
+          <ChatWidget />
+        </ThemeProvider>
+      </AuthProvider>
+    </body>
     </html>
   )
 }

@@ -60,7 +60,7 @@ const Map = ({ address, latitude, longitude, radius }: MapProps) => {
         map.remove()
       }
     }
-  }, [address, latitude, longitude, radius]) // Remove map from dependencies
+  }, [address, latitude, longitude, radius])
 
   return <div id="map" className="h-[400px] w-full rounded-lg mt-4" />
 }

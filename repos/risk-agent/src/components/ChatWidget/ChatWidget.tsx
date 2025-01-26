@@ -69,15 +69,15 @@ export default function ChatWidget() {
   return (
     <div className="fixed bottom-4 right-4 z-50">
       {isOpen ? (
-        <div className="bg-white rounded-lg shadow-xl w-96 h-[500px] flex flex-col">
-          <div className="p-4 border-b flex justify-between items-center bg-white">
+        <div className="bg-white rounded-2xl shadow-xl w-96 h-[500px] flex flex-col">
+          <div className="p-4 border-b flex justify-between items-center bg-[#003087] rounded-t-2xl">
             <div className="flex items-center space-x-3">
               <ProfileImage />
-              <h3 className="text-lg font-semibold text-gray-800">Live GOAT</h3>
+              <h3 className="text-lg font-semibold text-white">Live GOAT</h3>
             </div>
             <button
               onClick={() => setIsOpen(false)}
-              className="text-gray-500 hover:text-gray-700"
+              className="text-white hover:text-gray-200"
             >
               ×
             </button>
@@ -97,11 +97,11 @@ export default function ChatWidget() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Type your message..."
-                className="flex-1 rounded-lg border border-gray-300 px-4 py-2 text-gray-800"
+                className="flex-1 rounded-lg border border-gray-300 px-4 py-2 text-gray-800 focus:border-[#003087] focus:ring focus:ring-[#003087] focus:ring-opacity-50"
               />
               <button
                 type="submit"
-                className="bg-[#003087] text-white px-4 py-2 rounded-lg hover:bg-[#002266]"
+                className="bg-[#003087] text-white px-4 py-2 rounded-lg hover:bg-[#002670] transition-colors"
               >
                 Send
               </button>
@@ -111,7 +111,7 @@ export default function ChatWidget() {
       ) : (
         <button
           onClick={() => setIsOpen(true)}
-          className="bg-indigo-600 text-white p-4 rounded-full shadow-lg hover:bg-indigo-700"
+          className="bg-[#003087] text-white p-4 rounded-full shadow-lg hover:bg-[#002670] transition-colors"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

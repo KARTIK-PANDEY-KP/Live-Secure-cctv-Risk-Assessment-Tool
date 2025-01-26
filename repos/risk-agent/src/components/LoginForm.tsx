@@ -46,9 +46,9 @@ export default function LoginForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 w-full max-w-md">
+    <form onSubmit={handleSubmit} className="space-y-4 w-full max-w-md bg-white shadow-lg rounded-2xl p-8">
       <div>
-        <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+        <label htmlFor="email" className="block text-sm font-medium text-gray-700">
           Email
         </label>
         <input
@@ -57,12 +57,12 @@ export default function LoginForm() {
           name="email"
           value={formData.email}
           onChange={handleChange}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+          className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-[#003087] focus:ring focus:ring-[#003087] focus:ring-opacity-50"
           required
         />
       </div>
       <div>
-        <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+        <label htmlFor="password" className="block text-sm font-medium text-gray-700">
           Password
         </label>
         <input
@@ -71,7 +71,7 @@ export default function LoginForm() {
           name="password"
           value={formData.password}
           onChange={handleChange}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+          className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-[#003087] focus:ring focus:ring-[#003087] focus:ring-opacity-50"
           required
         />
       </div>
@@ -150,7 +150,7 @@ export default function LoginForm() {
       )}
       <button
         type="submit"
-        className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:bg-indigo-700 dark:hover:bg-indigo-800"
+        className="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-[#003087] hover:bg-[#002670] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#003087] transition-colors"
       >
         {isLogin ? "Sign In" : "Register"}
       </button>
@@ -158,7 +158,7 @@ export default function LoginForm() {
         <button
           type="button"
           onClick={() => setIsLogin(!isLogin)}
-          className="text-sm text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300"
+          className="text-sm text-[#003087] hover:text-[#002670] transition-colors"
         >
           {isLogin ? "Need an account? Register" : "Already have an account? Sign In"}
         </button>

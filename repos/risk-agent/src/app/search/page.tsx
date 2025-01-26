@@ -9,7 +9,6 @@ interface SearchResult {
   id: number
   address: string
   risk: string
-  analysis: string
   occurrences?: number
   latitude?: number
   longitude?: number
@@ -87,9 +86,6 @@ export default function Search() {
             id: 1,
             address,
             risk: riskLevel,
-            analysis: matchedCategory
-              ? `Based on ${matchedCategory} (Risk Score: ${riskScore}/10)`
-              : 'General safety assessment',
             occurrences: Math.floor(Math.random() * 20) + 1,
             latitude,
             longitude,
@@ -106,20 +102,17 @@ export default function Search() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f5f7fa] dark:bg-[#1a2433] py-6 flex flex-col justify-center sm:py-12">
+    <div className="min-h-screen bg-white py-6 flex flex-col justify-center sm:py-12">
       <div className="relative py-3 sm:mx-auto container">
-        <div className="relative px-4 py-10 bg-white dark:bg-[#243447] shadow-lg sm:rounded-3xl sm:p-20">
+        <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-2xl sm:p-20">
           <div className="flex gap-8">
             {/* --- Search Form --- */}
             <div className="flex-1 max-w-md">
-              <h1 className="text-2xl font-semibold mb-6 dark:text-white">Location Search</h1>
+              <h1 className="text-2xl font-semibold mb-6 text-[#003087]">Location Search</h1>
               <form onSubmit={handleSubmit} className="space-y-4">
                 {/* Street Address */}
                 <div>
-                  <label
-                    htmlFor="streetAddress"
-                    className="block text-sm font-medium text-gray-700 dark:text-gray-300"
-                  >
+                  <label htmlFor="streetAddress" className="block text-sm font-medium text-gray-700">
                     Street Address
                   </label>
                   <input
@@ -127,7 +120,7 @@ export default function Search() {
                     id="streetAddress"
                     value={searchParams.streetAddress}
                     onChange={(e) => setSearchParams({ ...searchParams, streetAddress: e.target.value })}
-                    className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                    className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-[#003087] focus:ring focus:ring-[#003087] focus:ring-opacity-50"
                     required
                   />
                 </div>
@@ -135,10 +128,7 @@ export default function Search() {
                 {/* City / State */}
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label
-                      htmlFor="city"
-                      className="block text-sm font-medium text-gray-700 dark:text-gray-300"
-                    >
+                    <label htmlFor="city" className="block text-sm font-medium text-gray-700">
                       City
                     </label>
                     <input
@@ -146,15 +136,12 @@ export default function Search() {
                       id="city"
                       value={searchParams.city}
                       onChange={(e) => setSearchParams({ ...searchParams, city: e.target.value })}
-                      className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                      className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-[#003087] focus:ring focus:ring-[#003087] focus:ring-opacity-50"
                       required
                     />
                   </div>
                   <div>
-                    <label
-                      htmlFor="state"
-                      className="block text-sm font-medium text-gray-700 dark:text-gray-300"
-                    >
+                    <label htmlFor="state" className="block text-sm font-medium text-gray-700">
                       State
                     </label>
                     <input
@@ -162,7 +149,7 @@ export default function Search() {
                       id="state"
                       value={searchParams.state}
                       onChange={(e) => setSearchParams({ ...searchParams, state: e.target.value })}
-                      className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                      className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-[#003087] focus:ring focus:ring-[#003087] focus:ring-opacity-50"
                       required
                     />
                   </div>
@@ -171,10 +158,7 @@ export default function Search() {
                 {/* ZIP / Radius */}
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label
-                      htmlFor="zipCode"
-                      className="block text-sm font-medium text-gray-700 dark:text-gray-300"
-                    >
+                    <label htmlFor="zipCode" className="block text-sm font-medium text-gray-700">
                       ZIP Code
                     </label>
                     <input
@@ -182,15 +166,12 @@ export default function Search() {
                       id="zipCode"
                       value={searchParams.zipCode}
                       onChange={(e) => setSearchParams({ ...searchParams, zipCode: e.target.value })}
-                      className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                      className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-[#003087] focus:ring focus:ring-[#003087] focus:ring-opacity-50"
                       required
                     />
                   </div>
                   <div>
-                    <label
-                      htmlFor="radius"
-                      className="block text-sm font-medium text-gray-700 dark:text-gray-300"
-                    >
+                    <label htmlFor="radius" className="block text-sm font-medium text-gray-700">
                       Radius (mi)
                     </label>
                     <input
@@ -198,7 +179,7 @@ export default function Search() {
                       id="radius"
                       value={searchParams.radius}
                       onChange={(e) => setSearchParams({ ...searchParams, radius: e.target.value })}
-                      className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                      className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-[#003087] focus:ring focus:ring-[#003087] focus:ring-opacity-50"
                       required
                     />
                   </div>
@@ -206,10 +187,7 @@ export default function Search() {
 
                 {/* Custom Prompt */}
                 <div>
-                  <label
-                    htmlFor="customPrompt"
-                    className="block text-sm font-medium text-gray-700 dark:text-gray-300"
-                  >
+                  <label htmlFor="customPrompt" className="block text-sm font-medium text-gray-700">
                     Custom Prompt
                   </label>
                   <textarea
@@ -217,14 +195,13 @@ export default function Search() {
                     value={searchParams.customPrompt}
                     onChange={(e) => setSearchParams({ ...searchParams, customPrompt: e.target.value })}
                     placeholder="Available categories: Masks, Collisions, Fence Boundaries, Fence Crossings"
-                    className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                    className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-[#003087] focus:ring focus:ring-[#003087] focus:ring-opacity-50"
                     rows={2}
                   />
                 </div>
-
                 <button
                   type="submit"
-                  className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  className="w-full flex justify-center py-2 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-[#003087] hover:bg-[#002670] transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#003087]"
                 >
                   Search
                 </button>
@@ -232,31 +209,25 @@ export default function Search() {
             </div>
 
             {/* --- Search Results --- */}
-            <div className="flex-1 border-l border-gray-200 dark:border-gray-700 pl-8">
-              <h2 className="text-xl font-semibold mb-4 dark:text-white">
+            <div className="flex-1 border-l border-gray-200 pl-8">
+              <h2 className="text-xl font-semibold mb-4 text-[#003087]">
                 {isLoading ? 'Searching...' : searchResults.length > 0 ? 'Search Results' : 'No results yet'}
               </h2>
 
               {isLoading ? (
                 <div className="flex justify-center items-center h-32">
-                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
+                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#003087]"></div>
                 </div>
               ) : (
                 searchResults.length > 0 && (
                   <>
                     <ul className="space-y-2">
                       {searchResults.map((result: SearchResult) => (
-                        <li
-                          key={result.id}
-                          className="bg-gray-50 dark:bg-gray-700 p-4 rounded-md"
-                        >
-                          <p className="font-medium dark:text-white">{result.address}</p>
-                          <p className="text-sm text-gray-600 dark:text-gray-300">
-                            Risk Level: {result.risk}
-                          </p>
+                        <li key={result.id} className="bg-white shadow-lg rounded-xl p-6 border border-gray-200">
+                          <p className="font-medium text-[#003087]">{result.address}</p>
+                          <p className="text-sm text-gray-600">Risk Level: {result.risk}</p>
                           <RiskMeter risk={result.risk} />
 
-                          {/* Map Component */}
                           {result.latitude && result.longitude && (
                             <div className="mt-4">
                               <Map
@@ -273,17 +244,14 @@ export default function Search() {
 
                     {/* --- Report Summary --- */}
                     {searchParams.customPrompt && (
-                      <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
+                      <div className="mt-8 pt-6 border-t border-gray-200">
                         <div className="flex justify-between items-center mb-3">
-                          <h3 className="text-lg font-semibold dark:text-white">
-                            Report Summary
-                          </h3>
+                          <h3 className="text-lg font-semibold text-[#003087]">Report Summary</h3>
                           <button
                             onClick={() => {
                               const report = {
                                 address: searchResults[0]?.address,
                                 risk: searchResults[0]?.risk,
-                                analysis: searchResults[0]?.analysis,
                                 occurrences: searchResults[0]?.occurrences,
                                 timestamp: new Date().toISOString(),
                               }
@@ -299,28 +267,24 @@ export default function Search() {
                               document.body.removeChild(a)
                               URL.revokeObjectURL(url)
                             }}
-                            className="px-4 py-2 text-sm font-medium text-white bg-green-600 hover:bg-green-700 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                            className="px-4 py-2 text-sm font-medium text-white bg-[#003087] hover:bg-[#002670] rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#003087]"
                           >
                             Download Report
                           </button>
                         </div>
 
-                        <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-md">
-                          <p className="text-sm text-gray-600 dark:text-gray-300">
-                            <span className="font-medium">Custom Prompt:</span>{' '}
+                        <div className="bg-white shadow-lg rounded-xl p-6 border border-gray-200">
+                          <p className="text-sm text-gray-600">
+                            <span className="font-medium text-[#003087]">Custom Prompt:</span>{' '}
                             {searchParams.customPrompt}
                           </p>
-                          <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">
-                            <span className="font-medium">Risk Level:</span>{' '}
+                          <p className="text-sm text-gray-600 mt-2">
+                            <span className="font-medium text-[#003087]">Risk Level:</span>{' '}
                             {searchResults[0]?.risk}
                           </p>
-                          <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">
-                            <span className="font-medium">Occurrences (Last 30 days):</span>{' '}
+                          <p className="text-sm text-gray-600 mt-2">
+                            <span className="font-medium text-[#003087]">Occurrences (Last 30 days):</span>{' '}
                             {searchResults[0]?.occurrences}
-                          </p>
-                          <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">
-                            <span className="font-medium">Analysis:</span>{' '}
-                            {searchResults[0]?.analysis}
                           </p>
                         </div>
                       </div>

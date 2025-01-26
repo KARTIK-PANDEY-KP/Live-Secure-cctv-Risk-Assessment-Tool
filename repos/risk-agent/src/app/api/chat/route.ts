@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import OpenAI from 'openai'
 
-if (!process.env.OPENAI_API_KEY || !process.env.SQLITE_API_KEY) {
+if (!process.env.OPENAI_API_KEY) {
   throw new Error('Missing required API keys')
 }
 

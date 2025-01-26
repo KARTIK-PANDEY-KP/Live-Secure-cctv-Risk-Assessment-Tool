@@ -17,44 +17,37 @@ export default function Navigation() {
   }
 
   return (
-    <nav className="bg-white dark:bg-gray-800 shadow-lg">
+    <nav className="bg-[#003087] shadow-lg">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="flex justify-between h-16">
-          <div className="flex space-x-4 items-center">
-            <Link href="/" className="text-gray-700 dark:text-white hover:text-gray-900 dark:hover:text-gray-200">
+        <div className="flex justify-between h-20">
+          <div className="flex space-x-8 items-center">
+            <Link href="/" className="text-white hover:text-gray-200 text-lg font-medium">
               Home
             </Link>
             
             {!isLoggedIn ? (
               <>
-                <Link href="/register" className="text-gray-700 dark:text-white hover:text-gray-900 dark:hover:text-gray-200">
+                <Link href="/register" className="text-white hover:text-gray-200 text-lg font-medium">
                   Register
                 </Link>
-                <Link href="/login" className="text-gray-700 dark:text-white hover:text-gray-900 dark:hover:text-gray-200">
+                <Link href="/login" className="text-white hover:text-gray-200 text-lg font-medium">
                   Login
                 </Link>
               </>
             ) : (
               <>
-                <Link href="/employee-dashboard" className="text-gray-700 dark:text-white hover:text-gray-900 dark:hover:text-gray-200">
+                <Link href="/employee-dashboard" className="text-white hover:text-gray-200 text-lg font-medium">
                   Dashboard
                 </Link>
                 <button
                   onClick={handleSignOut}
-                  className="text-gray-700 dark:text-white hover:text-gray-900 dark:hover:text-gray-200"
+                  className="text-white hover:text-gray-200 text-lg font-medium"
                 >
                   Sign Out
                 </button>
               </>
             )}
           </div>
-          <button
-            onClick={toggleTheme}
-            className="p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
-            aria-label="Toggle theme"
-          >
-            {isDark ? <SunIcon /> : <MoonIcon />}
-          </button>
         </div>
       </div>
     </nav>

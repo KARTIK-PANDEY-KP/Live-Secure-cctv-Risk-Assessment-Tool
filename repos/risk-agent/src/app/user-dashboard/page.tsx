@@ -88,104 +88,106 @@ export default function UserDashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 py-6">
+    <div className="min-h-screen bg-white py-6">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Dashboard</h1>
+          <h1 className="text-3xl font-bold text-[#003087]">Dashboard</h1>
           <button
             onClick={() => setShowModal(true)}
-            className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700"
+            className="bg-[#003087] text-white px-4 py-2 rounded-lg hover:bg-[#002670] transition-colors"
           >
             Add Camera
           </button>
         </div>
         
         {loading ? (
-          <div className="text-center">Loading...</div>
+          <div className="text-center text-[#003087]">Loading...</div>
         ) : cameras.length > 0 ? (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {cameras.map((camera: any) => (
-              <div key={camera.id} className="bg-white dark:bg-gray-800 shadow rounded-lg p-6">
+              <div key={camera.id} className="bg-white shadow-lg rounded-xl p-6 border border-gray-200">
                 <div className="flex justify-between items-start">
-                  <h3 className="text-lg font-medium text-gray-900 dark:text-white">
+                  <h3 className="text-lg font-medium text-[#003087]">
                     {camera.nickname || `Camera ${camera.id}`}
                   </h3>
                   <button
                     onClick={() => handleDeleteCamera(camera.id)}
-                    className="text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300"
+                    className="text-red-600 hover:text-red-800 transition-colors"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                       <path fillRule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
                     </svg>
                   </button>
                 </div>
-                <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">URL: {camera.camera_url}</p>
-                <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">Position: {camera.position}</p>
-                <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">Prompt: {camera.custom_prompt}</p>
+                <p className="mt-2 text-sm text-gray-600">URL: {camera.camera_url}</p>
+                <p className="mt-2 text-sm text-gray-600">Position: {camera.position}</p>
+                <p className="mt-2 text-sm text-gray-600">Prompt: {camera.custom_prompt}</p>
               </div>
             ))}
           </div>
         ) : (
-          <div className="text-center text-gray-500 dark:text-gray-400">
+          <div className="text-center text-gray-600">
             No cameras configured yet. Click "Add Camera" to get started.
           </div>
         )}
 
         {showModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
-            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-md w-full">
-              <h2 className="text-xl font-semibold mb-4 dark:text-white">Add New Camera</h2>
+            <div className="bg-white rounded-2xl p-6 max-w-md w-full">
+              <h2 className="text-xl font-semibold mb-4 text-[#003087]">Add New Camera</h2>
               <form onSubmit={handleAddCamera} className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                  <label className="block text-sm font-medium text-gray-700">
                     Camera URL
                   </label>
                   <input
                     type="text"
                     value={newCamera.cameraURL}
                     onChange={(e) => setNewCamera({ ...newCamera, cameraURL: e.target.value })}
-                    className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                    className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-[#003087] focus:ring focus:ring-[#003087] focus:ring-opacity-50"
                     required
                   />
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                  <label className="block text-sm font-medium text-gray-700">
                     Camera Nickname
                   </label>
                   <input
                     type="text"
                     value={newCamera.nickname}
                     onChange={(e) => setNewCamera({ ...newCamera, nickname: e.target.value })}
-                    className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                    className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-[#003087] focus:ring focus:ring-[#003087] focus:ring-opacity-50"
                     required
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                  <label className="block text-sm font-medium text-gray-700">
                     Position
                   </label>
                   <input
                     type="text"
                     value={newCamera.position}
                     onChange={(e) => setNewCamera({ ...newCamera, position: e.target.value })}
-                    className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                    className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-[#003087] focus:ring focus:ring-[#003087] focus:ring-opacity-50"
                     required
                   />
                 </div>
+
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                  <label className="block text-sm font-medium text-gray-700">
                     Custom Prompt
                   </label>
                   <input
                     type="text"
                     value={newCamera.customPrompt}
                     onChange={(e) => setNewCamera({ ...newCamera, customPrompt: e.target.value })}
-                    className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                    className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-[#003087] focus:ring focus:ring-[#003087] focus:ring-opacity-50"
                     required
                   />
                 </div>
+
                 <div className="flex items-start mt-4">
                   <div className="flex items-center h-5">
                     <input
@@ -193,34 +195,35 @@ export default function UserDashboard() {
                       type="checkbox"
                       checked={acceptTerms}
                       onChange={(e) => setAcceptTerms(e.target.checked)}
-                      className="w-4 h-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500 dark:border-gray-600 dark:bg-gray-700"
+                      className="w-4 h-4 border-gray-300 rounded text-[#003087] focus:ring-[#003087] focus:ring-opacity-50"
                       required
                     />
                   </div>
                   <div className="ml-3 text-sm">
-                    <label htmlFor="terms" className="font-medium text-gray-700 dark:text-gray-300">
+                    <label htmlFor="terms" className="font-medium text-gray-700">
                       I accept the{' '}
-                      <a href="/terms" className="text-indigo-600 hover:text-indigo-500 dark:text-indigo-400">
+                      <a href="/terms" className="text-[#003087] hover:text-[#002670] transition-colors">
                         terms and conditions
                       </a>{' '}
                       and{' '}
-                      <a href="/privacy" className="text-indigo-600 hover:text-indigo-500 dark:text-indigo-400">
+                      <a href="/privacy" className="text-[#003087] hover:text-[#002670] transition-colors">
                         privacy policy
                       </a>
                     </label>
                   </div>
                 </div>
+
                 <div className="flex space-x-2 justify-end mt-4">
                   <button
                     type="button"
                     onClick={() => setShowModal(false)}
-                    className="px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-gray-900"
+                    className="px-4 py-2 text-gray-700 hover:text-gray-900 transition-colors"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
-                    className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700"
+                    className="bg-[#003087] text-white px-4 py-2 rounded-lg hover:bg-[#002670] transition-colors"
                   >
                     Add Camera
                   </button>
